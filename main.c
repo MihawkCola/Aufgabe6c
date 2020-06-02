@@ -165,7 +165,7 @@ void *consumer (void *q)
             if (res < 0)
                 fprintf(stderr, "[ERROR] URL: %s, Message: %s\n", url, webreq_error(res));
             else if (res != WEBREQ_HTTP_OK)
-                fprintf(stderr, "[ERROR] HTTP Status %d returned for URL: %s\n", res, rul);
+                fprintf(stderr, "[ERROR] HTTP Status %d returned for URL: %s\n", res, url);
             else
                 printf("[DONE ] URL: %s ->> File: %s\n", url, filename);
          /*    if (webreq_download(url, filename) < 0) {
