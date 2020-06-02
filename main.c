@@ -157,8 +157,11 @@ void *consumer (void *q)
             j++;
             pthread_mutex_unlock(fifo->mut);
             pthread_cond_signal (fifo->notFull);
+            char *downloadUrl = strdup(url);
+            strtok(url,"/");
+            char *domain =strtok(NULL,"/");
 
-            snprintf(filename, sizeof (filename), "%d_%d_%s.html", j,id, url);
+            snprintf(filename, sizeof (filename), "%d_%d_%s.html", j,id, domain);
 
             printf("[START] Downloading URL: %s ->> File: %s\n", url, filename);
             int res = webreq_download(url, filename);
