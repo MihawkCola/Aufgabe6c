@@ -131,7 +131,7 @@ void *consumer (void *q)
     parameter[1] = "--webreq-delay 0";
     parameter[2] = "--webreq-path urls";
 
-    //webreq_init(sizeof(parameter),parameter);
+    webreq_init(sizeof(parameter),parameter);
     consum *con = (consum*)q;
     int id =con->id;
     fifo = con->q;
@@ -144,8 +144,9 @@ void *consumer (void *q)
             printf ("consumer: queue EMPTY.\n");
             pthread_cond_wait (fifo->notEmpty, fifo->mut);
             //time_t t;
-        // struct timespace ts;
+             //struct timeval start;
             //time(t);
+            //gettimeofday(&sta,NULL);
          //   clock_gettime(CLOCK_REALTIME,ts);
 
         //    if(fifo->empty){
@@ -164,11 +165,11 @@ void *consumer (void *q)
             printf("[START] Downloading URL: %s ->> File: %s\n", url, filename);
 
 
-         /*  if (webreq_download(url, filename) < 0) {
+           if (webreq_download(url, filename) < 0) {
                 fprintf(stderr, "Bei der URL %s gabes probleme mit dem Download versuche über proxy\n", url);
             } else if(webreq_download_via_proxy(url, filename)<0){
                 fprintf(stderr, "Die url %s konnte nicht gedownload werden\n", url);
-            }*/
+            }
             if (fifo->eof) {
                 pthread_mutex_unlock(fifo->mut);
                 pthread_cond_broadcast(fifo->notEmpty);
