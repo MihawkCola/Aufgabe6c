@@ -158,30 +158,15 @@ void *consumer (void *q)
             pthread_mutex_unlock(fifo->mut);
             pthread_cond_signal (fifo->notFull);
 
+            snprintf(filename, sizeof (filename), "%d_%d_%s.html", j,id, url);
 
-           // snprintf(filename, sizeof (filename), "%d_%d_%s.html", j,id, url);
-            char* url = strdup(url);
-            strtok(url, "/");
-            char* domain = strtok(NULL, "/");
-
-            if (domain == NULL) {
-                fprintf(stderr, "[ERROR] domain could not be extracted from URL [%s], skipping\n", url);
-            } else {
-                char filename[64];
-                snprintf(filename, sizeof (filename), "%i_%i_%s.html", j,id, domain);
-
-                printf("[START] Downloading URL: %s ->> File: %s\n", url, filename);
-
-                int res;
-                res = webreq_download(url, filename);
-
-                if (res < 0)
-                    fprintf(stderr, "[ERROR] URL: %s, Message: %s\n", url, webreq_error(res));
-                else if (res != WEBREQ_HTTP_OK)
-                    fprintf(stderr, "[ERROR] HTTP Status %d returned for URL: %s\n", res, url);
-                else
-                    printf("[DONE ] URL: %s ->> File: %s\n", url, filename);
-            }
+            printf("[START] Downloading URL: %s ->> File: %s\n", url, filename);
+            int res = webreq_download(url, filename);
+            if (res < 0)
+                fprintf(stderr, "[ERROR] URL: %s, Message: %s\n", url, webreq_error(res));
+            else if (res != WEBREQ_HTTP_OK)
+                fprintf(stderr, "[ERROR] HTTP Status %d returned for URL: %s\n", res, url);
+            else
                 printf("[DONE ] URL: %s ->> File: %s\n", url, filename);
          /*    if (webreq_download(url, filename) < 0) {
                   fprintf(stderr, "Bei der URL %s gabes probleme mit dem Download versuche über proxy\n", url);
