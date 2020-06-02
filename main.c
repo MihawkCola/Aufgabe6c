@@ -48,7 +48,7 @@ int main (int argc, char *argv[])
     struct timeval  go, end;
     char *parameter[2];
     parameter[1] = "--webreq-delay 0";
-    parameter[2] = "--webreq-path urls";
+    parameter[2] = "--webreq-path downloads";
 
     webreq_init(2,parameter);
 
