@@ -62,6 +62,7 @@ int main (int argc, char *argv[])
     queue *fifo;
     pthread_t pro;
     pthread_attr_t attr;
+    webreq_init(1,parameter);
 
     fifo = queueInit ();
     if (fifo ==  NULL) {
@@ -141,7 +142,6 @@ void *consumer (void *q)
     char filename[64];
     consum *con = (consum*)q;
     int id =con->id;
-    webreq_init(1,parameter);
     fifo = con->q;
     //pthread_cond_signal(fifo->start);
     while (!fifo->empty || !fifo->eof){
