@@ -161,8 +161,13 @@ void *consumer (void *q)
             snprintf(filename, sizeof (filename), "%d_%d_%s.html", j,id, url);
 
             printf("[START] Downloading URL: %s ->> File: %s\n", url, filename);
-            webreq_download(url, filename);
-
+            int res = webreq_download(url, filename);
+            if (res < 0)
+                fprintf(stderr, "[ERROR] URL: %s, Message: %s\n", url, webreq_error(res));
+            else if (res != WEBREQ_HTTP_OK)
+                fprintf(stderr, "[ERROR] HTTP Status %d returned for URL: %s\n", res, rul);
+            else
+                printf("[DONE ] URL: %s ->> File: %s\n", url, filename);
          /*    if (webreq_download(url, filename) < 0) {
                   fprintf(stderr, "Bei der URL %s gabes probleme mit dem Download versuche über proxy\n", url);
               } else if(webreq_download_via_proxy(url, filename)<0){
