@@ -56,7 +56,6 @@ int main (int argc, char *argv[])
     strcat(a,cDelay);
     strcat(a,"\0");
     parameter[0]=a;
-    parameter[0]="--webreq-delay 10000";
     printf("\nDelay%s\n",parameter[0]);
 
     queue *fifo;
