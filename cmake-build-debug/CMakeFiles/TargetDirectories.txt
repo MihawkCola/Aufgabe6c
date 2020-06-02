@@ -1,0 +1,3 @@
+/home/mihawkcola/CLionProjects/aufgabe3C/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/mihawkcola/CLionProjects/aufgabe3C/cmake-build-debug/CMakeFiles/aufgabe3C.dir
+/home/mihawkcola/CLionProjects/aufgabe3C/cmake-build-debug/CMakeFiles/edit_cache.dir

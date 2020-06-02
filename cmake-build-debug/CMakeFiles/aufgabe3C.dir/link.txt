@@ -1,0 +1,1 @@
+/usr/bin/cc -pthread;-lcurl -g   CMakeFiles/aufgabe3C.dir/main.c.o  -o aufgabe3C 
