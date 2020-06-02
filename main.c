@@ -48,7 +48,6 @@ int main (int argc, char *argv[])
     datei= argv[1];
     struct timeval  go, end;
     parameter[0] = "--webreq-delay 0";
-    webreq_init(1,parameter);
 
     queue *fifo;
     pthread_t pro;
@@ -132,6 +131,7 @@ void *consumer (void *q)
     char filename[64];
     consum *con = (consum*)q;
     int id =con->id;
+    webreq_init(1,parameter);
     fifo = con->q;
     //pthread_cond_signal(fifo->start);
     while (!fifo->empty || !fifo->eof){
