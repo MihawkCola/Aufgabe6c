@@ -46,6 +46,11 @@ int main (int argc, char *argv[])
 {
     datei= argv[1];
     struct timeval  go, end;
+    char *parameter[2];
+    parameter[1] = "--webreq-delay 0";
+    parameter[2] = "--webreq-path urls";
+
+    webreq_init(sizeof(parameter),parameter);
 
     queue *fifo;
     pthread_t pro;
@@ -127,11 +132,6 @@ void *consumer (void *q)
     queue *fifo;
     char *url;
     char filename[64];
-    char *parameter[2];
-    parameter[1] = "--webreq-delay 0";
-    parameter[2] = "--webreq-path urls";
-
-    webreq_init(sizeof(parameter),parameter);
     consum *con = (consum*)q;
     int id =con->id;
     fifo = con->q;
