@@ -163,7 +163,7 @@ void *consumer (void *q)
             snprintf(filename, sizeof (filename), "%d_%d_%s.html", j,id, url);
 
             printf("[START] Downloading URL: %s ->> File: %s\n", url, filename);
-           // webreq_download(url, filename);
+            webreq_download(url, filename);
 
             /* if (webreq_download(url, filename) < 0) {
                   fprintf(stderr, "Bei der URL %s gabes probleme mit dem Download versuche über proxy\n", url);
