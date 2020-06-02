@@ -164,7 +164,7 @@ void *consumer (void *q)
             snprintf(filename, sizeof (filename), "%d_%d_%s.html", j,id, domain);
 
             printf("[START] Downloading URL: %s ->> File: %s\n", url, filename);
-            int res = webreq_download(url, filename);
+            int res = webreq_download(downloadUrl, filename);
             if (res < 0)
                 fprintf(stderr, "[ERROR] URL: %s, Message: %s\n", url, webreq_error(res));
             else if (res != WEBREQ_HTTP_OK)
