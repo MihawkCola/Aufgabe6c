@@ -46,11 +46,10 @@ int main (int argc, char *argv[])
 {
     datei= argv[1];
     struct timeval  go, end;
-    char *parameter[2];
+    char *parameter[1];
     parameter[1] = "--webreq-delay 0";
-    parameter[2] = "--webreq-path downloads";
 
-    webreq_init(2,parameter);
+    webreq_init(1,parameter);
 
     queue *fifo;
     pthread_t pro;
