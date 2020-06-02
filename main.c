@@ -20,6 +20,7 @@
 void *producer (void *q);
 void *consumer (void *q);
 char *datei;
+char *parameter[1];
 int j= 0;
 
 typedef struct {
@@ -46,10 +47,8 @@ int main (int argc, char *argv[])
 {
     datei= argv[1];
     struct timeval  go, end;
-    char *parameter[1];
     parameter[1] = "--webreq-delay 0";
 
-    webreq_init(1,parameter);
 
     queue *fifo;
     pthread_t pro;
@@ -129,6 +128,7 @@ void *producer (void *q)
 void *consumer (void *q)
 {
     queue *fifo;
+    webreq_init(1,parameter);
     char *url;
     char filename[64];
     consum *con = (consum*)q;
@@ -162,13 +162,13 @@ void *consumer (void *q)
             snprintf(filename, sizeof (filename), "%d_%d_%s.html", j,id, url);
 
             printf("[START] Downloading URL: %s ->> File: %s\n", url, filename);
-            //webreq_download(url, filename);
+            webreq_download(url, filename);
 
-             if (webreq_download(url, filename) < 0) {
+         /*    if (webreq_download(url, filename) < 0) {
                   fprintf(stderr, "Bei der URL %s gabes probleme mit dem Download versuche über proxy\n", url);
               } else if(webreq_download_via_proxy(url, filename)<0){
                   fprintf(stderr, "Die url %s konnte nicht gedownload werden\n", url);
-              }
+              }*/
             if (fifo->eof) {
                 pthread_mutex_unlock(fifo->mut);
                 pthread_cond_broadcast(fifo->notEmpty);
