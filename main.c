@@ -50,7 +50,7 @@ int main (int argc, char *argv[])
     parameter[1] = "--webreq-delay 0";
     parameter[2] = "--webreq-path urls";
 
-    webreq_init(sizeof(parameter),parameter);
+   // webreq_init(sizeof(parameter),parameter);
 
     queue *fifo;
     pthread_t pro;
