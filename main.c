@@ -47,7 +47,8 @@ int main (int argc, char *argv[])
 {
     datei= argv[1];
     struct timeval  go, end;
-    parameter[1] = "--webreq-delay 0";
+    parameter[0] = "--webreq-delay 0";
+    //parameter[1] = "--webreq-delay 0";
 
 
     queue *fifo;
