@@ -54,6 +54,7 @@ int main (int argc, char *argv[])
     printf("Wie viele ms möchten Sie Delayn?\n");
     scanf("%s",cDelay);
     strcat(a,cDelay);
+    strcat(a,"\0");
     parameter[0]=a;
     printf("\nDelay%s\n",parameter[0]);
 
