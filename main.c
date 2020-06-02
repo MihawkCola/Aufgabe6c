@@ -47,7 +47,15 @@ int main (int argc, char *argv[])
 {
     datei= argv[1];
     struct timeval  go, end;
-    parameter[0] = "--webreq-delay 0";
+    int delay = 0;
+
+    char cDelay[100];
+    char a[100]="--webreq-delay ";
+    printf("Wie viele ms möchten Sie Delayn?\n");
+    scanf("%s",cDelay);
+    strcat(a,cDelay);
+    parameter[0]=a;
+    printf("\nDelay%s\n",parameter[0]);
 
     queue *fifo;
     pthread_t pro;
@@ -80,7 +88,7 @@ int main (int argc, char *argv[])
         pthread_join (con[i], NULL);
     }
     gettimeofday(&end, NULL);
-    printf("%lu ms",(end.tv_sec-go.tv_sec) * 1000 + (end.tv_usec-go.tv_usec) / 1000);
+    printf("%lu ms\n",(end.tv_sec-go.tv_sec) * 1000 + (end.tv_usec-go.tv_usec) / 1000);
     queueDelete (fifo);
 
     return 0;
