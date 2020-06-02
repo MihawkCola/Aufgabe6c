@@ -56,7 +56,7 @@ int main (int argc, char *argv[])
     strcat(a,cDelay);
     strcat(a,"\0");
     parameter[0]=a;
-    printf("\nDelay%s\n",parameter[0]);
+    printf("\n%s\n",parameter[0]);
 
     queue *fifo;
     pthread_t pro;
